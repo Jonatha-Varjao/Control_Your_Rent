@@ -4,6 +4,13 @@
         <meta charset = "UTF-8">
         <title>TITULO DA PÁGINA</title>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <script type="text/javascript">
+                function soma(p1,p2)
+                {
+                    alert(p1 + p2);
+                }
+        </script>
+
     </head>
     <body>
         <h1>Primeiro cabeçalho.</h1>
@@ -93,10 +100,15 @@
 
             <input type="reset" value="Limpar">
             <input type="submit" value="Enviar">
-            <button type="button" onclick="alert('Hello World!')">Click Me!</button>
+            
+
         </form>
+        <button type="button" onclick="alert('Hello World!')">Click Me!</button>
+        <button type="button2" onclick="soma(5,10);">Soma</button>
         <div id="area-mensagens">
+        Elementos de Bloco
         </div>
+        Elements<span class = "destaque"> de </span> Linha
 
     </body>
 </html>
