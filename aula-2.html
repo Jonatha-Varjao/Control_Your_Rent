@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>TITULO DA PAGIA</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src = "js/jquery.js"></script>
+        <script src = "js/bootstrap.js"></script>
+        <script src = "js/funcoes.js"></script>
+    </head>
+    <body>
+        <div>
+            <span class="label label-default">Default</span>
+            <span class="label label-primary">Primary</span>
+            <span class="label label-success">Success</span>
+            <span class="label label-info">Info</span>
+            <span class="label label-warning">Warning</span>
+            <span class="label label-danger">Danger</span>
+        </div>
+        <div>
+            <a href="#">Você possui <span class="badge">42</span> mensagens não lidas.</a>
+        </div>
+        <div>
+            <button class = "btn btn-primary" type="button">
+                Messages<span class="badge">4</span>
+            </button>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-cloud"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Username">
+        </div>
+
+        <div class="jumbotron">
+            <h1>Programação Comercial</h1>
+            <p>Aula inicial - bootstrap</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a>
+            </p>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-menu" 
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+                Dropdown
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another Action</a></li>
+                <li><a href="#">Someting else</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separeted link</a></li>
+        </div>
+
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sing" aria-hidden="true"></span>
+            <span class="sr-only">Erro:</span>Endereço de Email inválido.
+        </div>
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            Operação executada com <strong>Sucesso</strong>.
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel Title</h3>
+            </div>
+            <div class="panel-body">
+                Panel Content
+            </div>
+        </div>
+
+        <div class="well" id="area-01">
+            Manipulando a DOM com jquery - Teste 01
+        </div>
+        <div class="well" id="area-02">
+            Manipulando a DOM com jquery - Teste 02
+        </div>
+
+        <button type="button" class="btn btn-info" onclick="minhaFuncao1()">
+            Executar Ação 1
+        </button>
+        <button type="button" class="btn btn-danger" onclick="minhaFuncao2()">
+            Executar Ação 2
+        </button>
+        <button type="button" class="btn btn-success" onclick="minhaFuncao3()">
+            Executar Ação 3
+        </button>
+    </body>
+
+</html>
