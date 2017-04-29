@@ -22,7 +22,7 @@ class UserRegistrationForm(forms.ModelForm):
 class ImovelUserForm(forms.ModelForm):
     class Meta:
         model = Imovel
-        fields = ('nome', 'cep', 'uf', 'stats', 'latitude', 'longitude')
+        fields = ('nome', 'cep', 'uf', 'stats','position')
 
 
 #ADICIONANDO FIELDS AO PADRAO USER

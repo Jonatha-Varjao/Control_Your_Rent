@@ -169,7 +169,7 @@
                     <li>
                         <a href="/"><i class="fa fa-fw fa-bar-chart-o"></i> Gráficos</a>
                     </li>
-                    
+
                     <li>
                         <a href="{% url 'Rent:imoveladd' %}"><i class="fa fa-fw fa-building-o"></i> Adicionar Imovel</a>
                     </li>
@@ -177,13 +177,11 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-building"></i> Imóveis Cadastrados <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <!--FOR PRA PEGAR OS IMOVEIS DO USUARIO-->
-                            {% if request.user.is_authenticated %} {{ request.user }} {% for g in user.imovel.all %}
+                            {% if request.user.is_authenticated %} {% for imovel in user.imovel.all %}
                             <li>
-                                <a href="" >  {{ g.nome }}</a>
-
+                                <a href="{% url 'Rent:imoveldetail' imovel.pk %}">{{ imovel.nome }}</a>
                             </li>
                             {% endfor %} {% endif %}
-
                         </ul>
                     </li>
                     <li>
@@ -202,7 +200,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Feed <small></small>
+                            Detalhe do Imovel: {{imovel.nome}} <small></small>
                         </h1>
                     </div>
                 </div>
@@ -225,36 +223,11 @@
                                 </div>
                             </div>
                             <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
+
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-building-o fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>Novos Imóveis!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Ver Lista</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-yellow">
                             <div class="panel-heading">
@@ -281,8 +254,25 @@
                 </div>
                 <!-- /.row -->
                 <!-- /.row -->
-                                
-                
+                <div>
+                    <ol class="breadcrumb">
+                        <div><li>Nome: {{imovel.nome}} </a></li></div>
+                        <div><li>Cep: {{imovel.cep}} </a></li></div>
+                        <div><li>Status: {{imovel.stats}} </a></li></div>
+                        <div><li>Latitude: {{imovel.position.latitude}} </a></li></div>
+                        <div><li>Latitude: {{imovel.position.longitude}} </a></li></div>
+                        
+                    </ol>
+                </div>
+                <div>                    
+                    <a href="#">
+                        <div class="panel-yellow">
+                            <span class="pull-left"><h4>Alterar</h4></span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            
+                        </div>
+                    </a>
+                </div>
             </div>
             <!-- /.row -->
 

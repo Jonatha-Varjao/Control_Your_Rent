@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
+
 
 
 from django.urls import reverse
@@ -106,11 +106,12 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+#LIST VIEW 
+def imovel_list(request):
+    return None
 
 
 # DETAIL VIEW
-def imovel_detail(request,imovel):
-    imovel = get_object_or_404(Imovel)
-    return render(request,
-                  'Dashboard/detail.html',
-                  {'imovel':imovel})
+class ImovelDetail(DetailView):
+    model = Imovel
+    template_name='Dashboard/detail.html'

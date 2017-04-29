@@ -1,15 +1,22 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
 from django.db import models
+from geoposition.fields import GeopositionField
 from django.contrib.auth.models import User
-from django.conf import settings
-from django.core.urlresolvers import reverse
 
+class PointOfInterest(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=50)
+    zipcode = models.CharField(max_length=10)
+    position = GeopositionField(blank=True)
 
-# Create your models here.
+    class Meta:
+        verbose_name_plural = 'points of interest'
 
-# USUÁRIO....
+# USUARIO....
 class UserProfile(models.Model):
     SEXO_CHOICES = (
         (u'M', u'Masculino'),
@@ -53,6 +60,8 @@ class UserProfile(models.Model):
 
 
 class Imovel(models.Model):
+    class Meta:
+        verbose_name_plural = 'Imoveis'
     UF_CHOICES = (
         (u'AC', u'Acre'),
         (u'AL', u'Alagoas'),
@@ -83,8 +92,10 @@ class Imovel(models.Model):
         (u'TO', u'Tocantins'),
     )
     STATUS_CHOICES = (
-        ('alugar', 'Alugar'),
-        ('vender', 'Vender'),
+        (0, 'Alugar'),
+        (00,'Alugado'),
+        (1, 'Vender'),
+        (11,'Vendido')
     )
 
     nome = models.CharField(max_length=40, null=False)
@@ -92,16 +103,9 @@ class Imovel(models.Model):
     cep = models.CharField(max_length=8)
     uf = models.CharField(max_length=2, default='ZZ',
                           null=False, choices=UF_CHOICES)
-    stats = models.CharField(max_length=7, default='NO',
+    stats = models.IntegerField(default=0,
                              null=False, choices=STATUS_CHOICES)
     # TODO googleMaps API
-    latitude = models.FloatField(max_length=15, default=0)
-    longitude = models.FloatField(max_length=15, default=0)
-
-    def get_absolute_url(self):
-        return reverse('Rent:Imovel',
-                       args=[self.imovel.year,
-                             self.imovel.strftime('%m'),
-                             self.publish.strftime('%d'),
-                             self.slug])                        
+    position = GeopositionField()
+    
 

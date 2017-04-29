@@ -179,7 +179,7 @@
                             <!--FOR PRA PEGAR OS IMOVEIS DO USUARIO-->
                             {% if request.user.is_authenticated %} {% for imovel in user.imovel.all %}
                             <li>
-                               <a href="" >  {{ imovel.nome }}</a>
+                               <a href="{% url 'Rent:imoveldetail' imovel.pk%}" > {{ imovel.pk }} {{ imovel.nome }}</a>
 
                             </li>
                             {% endfor %} {% endif %}

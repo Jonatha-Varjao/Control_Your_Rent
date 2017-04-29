@@ -19,6 +19,6 @@ urlpatterns = [
     # ADD IMOVEL
     url(r'^CadastrarImovel/$', views.ImovelRegister, name='imoveladd'),
     # DETALHE IMOVEL
-    url(r'^Imovel/(?P<pk>[-\w]+)/$', views.imovel_detail, name='imovel_detail')
+    url(r'^DetalheImovel/(?P<pk>\d+)/$', views.ImovelDetail.as_view() , name='imoveldetail')
     #url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail')
 ]
