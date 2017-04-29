@@ -1,7 +1,7 @@
 mysite/*
 !mysite/ControlMyRent
 !mysite/mysite
-!mysite/polls
+!mysite/geosition
 
 share/*
 bin/*
