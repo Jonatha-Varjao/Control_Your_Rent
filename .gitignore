@@ -1,0 +1,23 @@
+mysite/*
+!mysite/sistema
+!mysite/tutorial
+!mysite/sgl
+
+share/*
+bin/*
+include/*
+lib/*
+local/*
+
+# Exclui todos com as seguintes extensões
+*.pyc
+*.pyo
+.env
+*.json
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media
