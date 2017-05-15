@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Control My Rent - Painel de Controle</title>
     {% load staticfiles %}
+    <!-- Bootstrap Core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -145,18 +144,21 @@
                                         {% endif %}
                                         </span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><!-- ABA DO PERFIL //CRUDE PERFIL -->
+                        <li>
+                            <!-- ABA DO PERFIL //CRUDE PERFIL -->
                             <a href="{% url 'Rent:perfildetail' %}"><i class="fa fa-fw fa-user"></i> Perfil</a>
                         </li>
-                        <li><!-- ABA DO INBOX //LISTAR OS INBOX//DETAIL INBOX  -->
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        <li>
+                            <!-- ABA DO INBOX //LISTAR OS INBOX//DETAIL INBOX  -->
+                            <a><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
-                        <li><!-- ABA DO CONFIGURAÇÕES //Opções personalizadas de Busca -->
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Configurações</a>
+                        <li>
+                            <!-- ABA DO CONFIGURAÇÕES //Opções personalizadas de Busca -->
+                            <a><i class="fa fa-fw fa-gear"></i> Configurações</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -165,14 +167,14 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="{% url 'Rent:landing'%}"><i class="fa fa-fw fa-rss"></i>Feed</a>
+                        <a href="{% url 'Rent:landing' %}"><i class="fa fa-fw fa-rss"></i>Feed</a>
                     </li>
                     <li>
                         <a href="{% url 'Rent:graficos'%}"><i class="fa fa-fw fa-bar-chart-o"></i> Gráficos</a>
                     </li>
 
-                    <li class="active">
-                        <a href="{% url 'Rent:imoveladd'%}"><i class="fa fa-fw fa-building-o"></i> Adicionar Imovel</a>
+                    <li>
+                        <a href="{% url 'Rent:imoveladd' %}"><i class="fa fa-fw fa-building-o"></i> Adicionar Imovel</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-building"></i> Imóveis Cadastrados <i class="fa fa-fw fa-caret-down"></i></a>
@@ -180,9 +182,11 @@
                             <!--FOR PRA PEGAR OS IMOVEIS DO USUARIO-->
                             {% if request.user.is_authenticated %} {% for imovel in user.imovel.all %}
                             <li>
-                                <a href="{% url 'Rent:imoveldetail' imovel.pk %}">{{ imovel.nome }}</a>
+                                <a href="{% url 'Rent:imoveldetail' imovel.pk%}"> {{ imovel.nome }}</a>
+
                             </li>
                             {% endfor %} {% endif %}
+
                         </ul>
                     </li>
                     <li>
@@ -192,40 +196,61 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+
         <div id="page-wrapper">
 
             <div class="container-fluid">
 
-                <!-- Page Heading -->
+                <!-- Page Heading ->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Cadastre Seu Imovel <small></small>
+                            Informações do Perfil <small></small>
                         </h1>
                     </div>
                 </div>
-                <div>
-                    <div class="row">
-                        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-                        <form action="." method="post">
+                <!-- /.row -->
+
+                <!-- /.row -->
+
+
+
+            </div>
+            <div>
+                <h2>Editar Perfil</h2>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                </ul>
+                {% endif %}
+
+                <ul class="list-group"> 
+                    <form action="." method="post">
                             {{ form.media }}
                             {{ form.as_p }}{% csrf_token %}
                             <p><input class="btn btn-info btn-group-sm" type="submit" value="Registrar"></p>
                         </form>
-                    </div>
-                </div>
+                </ul>
             </div>
+            <!-- /.row -->
+            <!-- /.row -->
+
+
+
         </div>
+        <!-- /.row -->
+
     </div>
     <!-- /.container-fluid -->
 
+    </div>
+    <!-- /#page-wrapper -->
 
-
-
-    <!-- /.container-fluid -->
-
-
-    <!--scripts-->
+    </div>
+    <!-- /#wrapper -->
+    {% load staticfiles %}
     <!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>
 

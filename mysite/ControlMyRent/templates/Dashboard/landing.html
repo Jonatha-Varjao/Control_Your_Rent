@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="landing.html">Control My Rent</a>
+                <a class="navbar-brand" href="{%url 'Rent:landing'%}">Control My Rent</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -144,14 +144,14 @@
                                         {% endif %}
                                         </span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        <li><!-- ABA DO PERFIL //CRUDE PERFIL -->
+                            <a href="{% url 'Rent:perfildetail'%}"><i class="fa fa-fw fa-user"></i> Perfil</a>
                         </li>
-                        <li>
+                        <li><!-- ABA DO INBOX //LISTAR OS INBOX//DETAIL INBOX  -->
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        <li><!-- ABA DO CONFIGURAÇÕES //Opções personalizadas de Busca -->
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Configurações</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -164,10 +164,10 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="{% url 'Rent:landing'%}"><i class="fa fa-fw fa-rss"></i>Feed</a>
+                        <a href="{% url 'Rent:landing' %}"><i class="fa fa-fw fa-rss"></i>Feed</a>
                     </li>
                     <li>
-                        <a href="/"><i class="fa fa-fw fa-bar-chart-o"></i> Gráficos</a>
+                        <a href="{% url 'Rent:graficos'%}"><i class="fa fa-fw fa-bar-chart-o"></i> Gráficos</a>
                     </li>
                     
                     <li>
@@ -179,7 +179,7 @@
                             <!--FOR PRA PEGAR OS IMOVEIS DO USUARIO-->
                             {% if request.user.is_authenticated %} {% for imovel in user.imovel.all %}
                             <li>
-                               <a href="{% url 'Rent:imoveldetail' imovel.pk%}" > {{ imovel.pk }} {{ imovel.nome }}</a>
+                               <a href="{% url 'Rent:imoveldetail' imovel.pk%}" > {{ imovel.nome }}</a>
 
                             </li>
                             {% endfor %} {% endif %}
@@ -187,7 +187,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/"><i class="fa fa-fw fa-list-alt"></i>Imóveis Disponíveis</a>
+                        <a href="{%url 'Rent:imovelList'%}"><i class="fa fa-fw fa-list-alt"></i>Imóveis Disponíveis</a>
                     </li>
                 </ul>
             </div>
@@ -224,13 +224,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
+                            
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -241,8 +235,29 @@
                                         <i class="fa fa-building-o fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>Novos Imóveis!</div>
+                                        <div class="huge">AJAX</div>
+                                        <div>Imóveis Adicionados</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Ver Lista</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div><div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-building-o fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">AJAX</div>
+                                        <div>Imóveis!</div>
                                     </div>
                                 </div>
                             </div>
@@ -263,7 +278,7 @@
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
+                                        <div class="huge">AJAX</div>
                                         <div>Interessados!</div>
                                     </div>
                                 </div>

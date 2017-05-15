@@ -1,24 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-
+from django.core.urlresolvers import reverse
 from django.db import models
 from geoposition.fields import GeopositionField
 from django.contrib.auth.models import User
 
-class PointOfInterest(models.Model):
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=255)
-    city = models.CharField(max_length=50)
-    zipcode = models.CharField(max_length=10)
-    position = GeopositionField(blank=True)
-
-    class Meta:
-        verbose_name_plural = 'points of interest'
-
 # USUARIO....
 class UserProfile(models.Model):
-    SEXO_CHOICES = (
+    SEXO_ESCOLHA = (
         (u'M', u'Masculino'),
         (u'F', u'Feminino'),
     )
@@ -54,7 +44,7 @@ class UserProfile(models.Model):
     uf_user = models.CharField(max_length=2, default='ZZ', choices=UF_CHOICES)
     cpf = models.CharField(max_length=11, null=False)
     data_de_nascimento = models.DateField(null=False)
-    sexo = models.CharField(max_length=1, null=False, choices=SEXO_CHOICES)
+    sexo = models.CharField(max_length=1, null=False, choices=SEXO_ESCOLHA)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # userProfilePic
 
@@ -109,3 +99,4 @@ class Imovel(models.Model):
     position = GeopositionField()
     
 
+#class like(models.Model):

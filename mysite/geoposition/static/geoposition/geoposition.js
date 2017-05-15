@@ -33,7 +33,7 @@ if (jQuery != undefined) {
                 $mapContainer = $('<div class="geoposition-map" />'),
                 $addressRow = $('<div class="geoposition-address" />'),
                 $searchRow = $('<div class="geoposition-search" />'),
-                $searchInput = $('<input>', {'type': 'search', 'placeholder': 'Start typing an address …'}),
+                $searchInput = $('<input>', {'type': 'search', 'placeholder': 'Endereço...'}),
                 $latitudeField = $container.find('input.geoposition:eq(0)'),
                 $longitudeField = $container.find('input.geoposition:eq(1)'),
                 latitude = parseFloat($latitudeField.val()) || null,

@@ -9,7 +9,7 @@ from . import Geoposition
 
 class GeopositionField(forms.MultiValueField):
     default_error_messages = {
-        'invalid': _('Enter a valid geoposition.')
+        'invalid': _('Entre um dado Valido.')
     }
 
     def __init__(self, *args, **kwargs):
