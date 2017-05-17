@@ -166,7 +166,7 @@
                     </li>
 
                     <li>
-                        <a href="{% url 'Rent:imoveladd' %}"><i class="fa fa-fw fa-building-o"></i> Adicionar Imovel</a>
+                        <a  href="{% url 'Rent:imoveldetail' imovel.pk%}" > <i class="fa fa-fw fa-building-o"></i> {{ imovel.nome }}</a>
                     </li>
                     <li class="active" > 
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-building"></i> Imóveis Cadastrados <i class="fa fa-fw fa-caret-down"></i></a>
@@ -195,7 +195,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Deletar Imovel: {{imovel.nome}} <small></small>
+                            Detalhe do Imovel: {{imovel.nome}} <small></small>
                         </h1>
                     </div>
                 </div>
@@ -203,7 +203,44 @@
 
                 <!-- /.row -->
 
-                
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-thumbs-o-up fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">AJAX</div>
+                                        <div>Curtidas do Imovel!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <a href="#">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-shopping-cart fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">AJAX</div>
+                                            <div>Interessados!</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- /.row -->
                 <!-- /.row -->
                 <div>
@@ -225,9 +262,10 @@
                 </div>
 
                 <div>
-                    <div class="panel-yellow">
-                        <span class="pull-left"><h4>Alterar</h4></span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="container">
+                       <a href="{% url 'Rent:imoveledit' imovel.pk%}"> <button class="btn btn-default"> Alterar</span> </a>
+                        <a href="{% url 'Rent:imoveldelete' imovel.pk%}"><button type="submit" class="btn btn-danger">Deletar</button></a>
+                        
                     </div>
 
                 </div>

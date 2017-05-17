@@ -15,14 +15,21 @@ from .forms import *
 from .models import *
 
 # INDEX PAGE
+
+
 def index(request):
     return render(request, 'Dashboard/landing.html')
 
 # LAND PAGE
+
+
 def landingPage(request):
-    return render(request, 'Dashboard/landing.html')
+    ImovelCount = Imovel.objects.count()
+    return render(request, 'Dashboard/landing.html',{'imovelcount':ImovelCount})
 
 # REGISTER IMOVEL PAGE
+
+
 def ImovelRegister(request):
     registered = False
     if request.method == 'POST':
@@ -74,6 +81,8 @@ def register(request):
                    'profile_form': profile_form,
                    'registered': registered})
 # TROCAR SENHA
+
+
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -102,8 +111,11 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    # PASSA A VIEW DASHBOARD
-                    return render(request, 'Dashboard/landing.html')
+                    # PASSA A VIEW DASHBOARD=
+                    ImovelCount = Imovel.objects.count()
+                    img = UserProfile.objects.get(pk=id)
+                    return render(request, 'Dashboard/landing.html',{'imovelcount':ImovelCount,
+                                                                    'userprofile':img})
                 else:
                     # PASSA A VIEW ERRO/CONTA DESATIVADA
                     return HttpResponse('Conta Desativada')
@@ -115,6 +127,8 @@ def user_login(request):
     return render(request, 'Registration/login.html', {'form': form})
 
 # LOGOUT PAGE
+
+
 def user_logout(request):
     logout(request)
     messages.success(request, 'Deslogado com Sucesso')
@@ -125,12 +139,12 @@ def user_logout(request):
 class ImovelListView(ListView):
     model = Imovel
     template_name = 'Dashboard/listarimoveis.html'
-    paginate_by = 5
-    
+    paginate_by = 10
+
     def get_context_data(self, **kwargs):
         context = super(ImovelListView, self).get_context_data(**kwargs)
         return context
-    
+
     def get_paginate_by(self, queryset):
         """
         Paginate by specified value in querystring, or use default class property value.
@@ -138,30 +152,38 @@ class ImovelListView(ListView):
         return self.request.GET.get('paginate_by', self.paginate_by)
 
 # DETAIL VIEW
+
+
 class ImovelDetailView(DetailView):
     model = Imovel
-    template_name = 'Dashboard/detail.html'
+    template_name = 'Dashboard/Imovel/detail.html'
 
+
+class ImovelNoEditView(DetailView):
+    model = Imovel
+    template_name = 'Dashboard/Imovel/detailnoedit.html'
 
 # PERFIL PAGE
+
+
 def perfil(request):
     return render(request, 'Dashboard/Perfil/landing.html')
 
 # EDITAR PERFIL
+
+
 class perfilUpdateView(UpdateView):
+    model = User
+    fields = ['first_name', 'last_name', 'email']
+    template_name = 'Dashboard/Perfil/edit.html'
+    success_url = reverse_lazy('Rent:landing')
 
+
+class perfilProfileUpdateView(UpdateView):
     model = UserProfile
-    form_class = UserProfileEditForm
-    template_name = 'Dasboard/Perfil/edit.html'
-
-    def get_object(self, queryset=None):
-        return self.request.user
-
-    def form_valid(self, form):
-        clean = form.cleaned_data
-        context = {}
-        self.object = context.save(clean)
-        return super(perfilUpdateView, self).form_valid(form)
+    fields = ['uf_user', 'cpf', 'sexo', 'data_de_nascimento','profilePic']
+    template_name = 'Dashboard/Perfil/edituser.html'
+    success_url = reverse_lazy('Rent:landing')
 
 
 # DETAIL PERFIL
@@ -170,10 +192,23 @@ class perfilDetailView(DetailView):
     template_name = 'Dashboard/Perfil/landing.html'
 
 # VIEW PRA DELETAR IMOVEIS
-class imovelDeleteView(DeleteView):
+
+
+class ImovelDeleteView(DeleteView):
     model = Imovel
-    success_url = reverse_lazy('landing')
+    template_name = 'Dashboard/Imovel/delet.html'
+    success_url = reverse_lazy('Rent:landing')
+
+
+# VIEW PARA UPDATE IMOVEIS
+class ImovelUpdateView(UpdateView):
+    model = Imovel
+    template_name = 'Dashboard/Imovel/edit.html'
+    form_class = ImovelUserForm
+    success_url = reverse_lazy('Rent:landing')
 
 # VIEWTESTE PARA GRAFICOS
+
+
 def graficos(request):
     return render(request, 'Dashboard/graficos.html')

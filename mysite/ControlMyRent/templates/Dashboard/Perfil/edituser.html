@@ -217,7 +217,7 @@
 
             </div>
             <div>
-                <h2>Editar Perfil {{user.userprofile.id}} </h2>
+                <h2>Editar Perfil</h2>
                 {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
@@ -228,11 +228,11 @@
 
                 <ul class="list-group">
                     <div>
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data" >
                         {% csrf_token %} {{ form.as_p }}
                         <input id="delete-object" data-object-id="3" class="btn btn-danger" type="submit" value="Sim." />
                         <a href="{% url 'Rent:landing' %}" class="btn btn-default">Não</a>
-                        <a href="{% url 'Rent:userupdate' user.userprofile.id %}" class="btn btn-warning">Mais Dados</a>
+                        
                     </form>
                     </div>
                 </ul>

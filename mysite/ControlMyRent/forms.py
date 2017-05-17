@@ -34,18 +34,18 @@ class ImovelUserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('cpf', 'data_de_nascimento', 'sexo')  # userProfilePic
+        fields = ('cpf', 'data_de_nascimento', 'sexo','profilePic')  # userProfilePic
 
 # EDITAR PERFIL DO USUARIO
 
 class UserProfileEditForm(forms.ModelForm):
     first_name = forms.CharField(label='First Name')
     last_name = forms.CharField(label='Last Name')
-
+    image = forms.ImageField()
     class Meta:
         model = UserProfile
         fields = ('first_name', 'last_name', 'cpf',
-                  'data_de_nascimento', 'sexo')
+                  'data_de_nascimento', 'sexo', 'image')
     
 
     def save(self, commit=True):
@@ -60,6 +60,3 @@ def clean_password2(self):
     if cd['password'] != cd['password2']:
         raise forms.ValidationError('Passwords don\'t match.')
     return cd['password2']
-
-# TODO
-# BUSCAR USUARIO/IMOVEIS

@@ -123,4 +123,8 @@ DATE_INPUT_FORMATS = ('%d/%m/%Y')
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'ControlMyRent/static/img')
+
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyB38du2NrPrcJVueWFxe8pS32MDyl6VaBY'

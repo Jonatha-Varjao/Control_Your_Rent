@@ -182,7 +182,7 @@
                             <!--FOR PRA PEGAR OS IMOVEIS DO USUARIO-->
                             {% if request.user.is_authenticated %} {% for imovel in user.imovel.all %}
                             <li>
-                                <a href="{% url 'Rent:imoveldetail' imovel.pk%}"> {{ imovel.nome }}</a>
+                                <a  href="{% url 'Rent:imoveldetail' imovel.pk%}" > <i class="fa fa-fw fa-building-o"></i> {{ imovel.nome }}</a>
 
                             </li>
                             {% endfor %} {% endif %}
@@ -202,10 +202,11 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
+                {% block content %}
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Lista de Imóveis <small></small>
+                            Lista de Imóveis {{object_list.count}} <small></small>
                         </h1>
                     </div>
                 </div>
@@ -214,12 +215,13 @@
                 <!-- /.row -->
 
                 <!-- /.row -->
-                {% block content %}
+                
                 <ul class="container-fluid">
                     {% for imovel in object_list %}
-                    <li class="list-group-item">{{ imovel.nome }}
+
+                    <li class="list-group-item">{{ imovel.nome }} 
                         <li class="list-group-item" >{{ imovel.stats }}</li>
-                        <a class="list-group-item-info" href="#">Mais Detalhes</a>
+                        <a class="list-group-item-info" href="{% url 'Rent:imovelnoedit' imovel.pk%}">Mais Detalhes</a>
                     </li>
                     {% endfor %}
                 </ul>

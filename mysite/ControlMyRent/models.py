@@ -46,8 +46,11 @@ class UserProfile(models.Model):
     data_de_nascimento = models.DateField(null=False)
     sexo = models.CharField(max_length=1, null=False, choices=SEXO_ESCOLHA)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # userProfilePic
+    profilePic = models.ImageField(upload_to ='profile_image', blank=True)
 
+
+    def __str__(self):
+        return self.user.username
 
 class Imovel(models.Model):
     class Meta:

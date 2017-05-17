@@ -182,7 +182,7 @@
                             <!--FOR PRA PEGAR OS IMOVEIS DO USUARIO-->
                             {% if request.user.is_authenticated %} {% for imovel in user.imovel.all %}
                             <li>
-                                <a href="{% url 'Rent:imoveldetail' imovel.pk%}"> {{ imovel.nome }}</a>
+                                <a  href="{% url 'Rent:imoveldetail' imovel.pk%}" > <i class="fa fa-fw fa-building-o"></i> {{ imovel.nome }}</a>
 
                             </li>
                             {% endfor %} {% endif %}
@@ -190,7 +190,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/"><i class="fa fa-fw fa-list-alt"></i>Imóveis Disponíveis</a>
+                        <a href="{% url 'Rent:imovelList' %}"><i class="fa fa-fw fa-list-alt"></i>Imóveis Disponíveis</a>
                     </li>
                 </ul>
             </div>
@@ -220,6 +220,7 @@
                     <h2>Dados do Usuário</h2>
                     <ul class="list-group">
                         {% if request.user.is_authenticated %}
+                        <img src="{{ user.userprofile.profilePic.url }}" >
                         <li class="list-group-item">Nome: {{user.first_name}}</li>
                         <li class="list-group-item">Sobrenome: {{user.last_name}}</li>
                         <li class="list-group-item">Email: {{user.email}}</li>
@@ -228,7 +229,7 @@
                         <li class="list-group-item">CPF: {{ user.userprofile.cpf }}</li>
                         <li class="list-group-item">Sexo: {{ user.userprofile.sexo }}</li>
 
-                        <a href="{% url 'Rent:edit_profile' %}">
+                        <a href="{% url 'Rent:perfilupdate' user.pk %}">
                             <li class="list-group-item col-sm-6">Trocar Dados</li>
                             <a href="#"> 
                             <li class="list-group-item col-sm-6" href="#">Trocar Senha</li>

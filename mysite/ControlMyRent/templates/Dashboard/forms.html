@@ -180,13 +180,13 @@
                             <!--FOR PRA PEGAR OS IMOVEIS DO USUARIO-->
                             {% if request.user.is_authenticated %} {% for imovel in user.imovel.all %}
                             <li>
-                                <a href="{% url 'Rent:imoveldetail' imovel.pk %}">{{ imovel.nome }}</a>
+                                <a  href="{% url 'Rent:imoveldetail' imovel.pk%}" > <i class="fa fa-fw fa-building-o"></i> {{ imovel.nome }}</a>
                             </li>
                             {% endfor %} {% endif %}
                         </ul>
                     </li>
                     <li>
-                        <a href="/"><i class="fa fa-fw fa-list-alt"></i>Imóveis Disponíveis</a>
+                        <a href="{% url 'Rent:imovelList' %}"><i class="fa fa-fw fa-list-alt"></i>Imóveis Disponíveis</a>
                     </li>
                 </ul>
             </div>

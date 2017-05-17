@@ -166,7 +166,7 @@
                     </li>
 
                     <li>
-                        <a href="{% url 'Rent:imoveladd' %}"><i class="fa fa-fw fa-building-o"></i> Adicionar Imovel</a>
+                        <a  href="{% url 'Rent:imoveldetail' imovel.pk%}" > <i class="fa fa-fw fa-building-o"></i> {{ imovel.nome }}</a>
                     </li>
                     <li class="active" > 
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-building"></i> Imóveis Cadastrados <i class="fa fa-fw fa-caret-down"></i></a>
@@ -262,12 +262,7 @@
                 </div>
 
                 <div>
-                    <div class="container">
-                        <button class="btn btn-info" type="" >Alterar</span>
-                        <button type="submit" class="btn btn-danger">Deletar</button>
-                        
-                    </div>
-
+                                        
                 </div>
                 <div class="geoposition-map">
                     <div id="map"></div>

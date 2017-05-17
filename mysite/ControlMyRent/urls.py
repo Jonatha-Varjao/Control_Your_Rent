@@ -28,12 +28,18 @@ urlpatterns = [
     url(r'^ListarImoveis/$', ImovelListView.as_view() , name='imovelList'),
     # ADD IMOVEL
     url(r'^CadastrarImovel/$', views.ImovelRegister, name='imoveladd'),
+    # UPDATE USUARIO
+    url(r'^Perfil/(?P<pk>\d+)$', views.perfilUpdateView.as_view(), name='perfilupdate'), 
+    
+    url(r'^PerfilUpdate/(?P<pk>\d+)$', views.perfilProfileUpdateView.as_view(), name='userupdate'),
     # DETALHE IMOVEL
     url(r'^DetalheImovel/(?P<pk>\d+)/$', views.ImovelDetailView.as_view() , name='imoveldetail'),
+    
+    url(r'^ListarImoveis/DetalheImovel/(?P<pk>\d+)/$', views.ImovelNoEditView.as_view() , name='imovelnoedit'),
     # UPDATE IMOVEL
-
+    url(r'^EditarImovel/(?P<pk>\d+)$', views.ImovelUpdateView.as_view(), name='imoveledit'),
     # DELETAR IMOVEL
-    url(r'^DeletarImovel/(?P<pk>\d+)/$', views.imovelDeleteView.as_view() , name='imoveldelete'),
+    url(r'^DeletarImovel/(?P<pk>\d+)/$', views.ImovelDeleteView.as_view() , name='imoveldelete'),
     # GRAFICOS
     url(r'^Graficos/', views.graficos , name='graficos')
 ]

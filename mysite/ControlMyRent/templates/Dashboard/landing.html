@@ -144,13 +144,16 @@
                                         {% endif %}
                                         </span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><!-- ABA DO PERFIL //CRUDE PERFIL -->
+                        <li>
+                            <!-- ABA DO PERFIL //CRUDE PERFIL -->
                             <a href="{% url 'Rent:perfildetail'%}"><i class="fa fa-fw fa-user"></i> Perfil</a>
                         </li>
-                        <li><!-- ABA DO INBOX //LISTAR OS INBOX//DETAIL INBOX  -->
+                        <li>
+                            <!-- ABA DO INBOX //LISTAR OS INBOX//DETAIL INBOX  -->
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
-                        <li><!-- ABA DO CONFIGURAÇÕES //Opções personalizadas de Busca -->
+                        <li>
+                            <!-- ABA DO CONFIGURAÇÕES //Opções personalizadas de Busca -->
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Configurações</a>
                         </li>
                         <li class="divider"></li>
@@ -169,7 +172,7 @@
                     <li>
                         <a href="{% url 'Rent:graficos'%}"><i class="fa fa-fw fa-bar-chart-o"></i> Gráficos</a>
                     </li>
-                    
+
                     <li>
                         <a href="{% url 'Rent:imoveladd' %}"><i class="fa fa-fw fa-building-o"></i> Adicionar Imovel</a>
                     </li>
@@ -179,7 +182,7 @@
                             <!--FOR PRA PEGAR OS IMOVEIS DO USUARIO-->
                             {% if request.user.is_authenticated %} {% for imovel in user.imovel.all %}
                             <li>
-                               <a href="{% url 'Rent:imoveldetail' imovel.pk%}" > {{ imovel.nome }}</a>
+                                <a href="{% url 'Rent:imoveldetail' imovel.pk%}"> <i class="fa fa-fw fa-building-o"></i> {{ imovel.nome }}</a>
 
                             </li>
                             {% endfor %} {% endif %}
@@ -209,7 +212,7 @@
                 <!-- /.row -->
 
                 <!-- /.row -->
-
+                
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
@@ -224,7 +227,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -248,7 +251,8 @@
                                 </div>
                             </a>
                         </div>
-                    </div><div class="col-lg-3 col-md-6">
+                    </div>
+                    <div class="col-lg-3 col-md-6">
                         <div class="panel panel-red">
                             <div class="panel-heading">
                                 <div class="row">
@@ -256,7 +260,7 @@
                                         <i class="fa fa-building-o fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">AJAX</div>
+                                        <div class="huge">{{imovelcount}} </div>
                                         <div>Imóveis!</div>
                                     </div>
                                 </div>
@@ -296,9 +300,10 @@
                 </div>
                 <!-- /.row -->
                 <!-- /.row -->
-                
-                
-                
+
+
+
+
             </div>
             <!-- /.row -->
 
