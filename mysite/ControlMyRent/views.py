@@ -13,22 +13,22 @@ from django.urls import reverse
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView
 from .forms import *
 from .models import *
+from django.forms import modelformset_factory
 
 # INDEX PAGE
 
 
 def index(request):
-    return render(request, 'Dashboard/landing.html')
+    return render(request, 'ControlMyRent/index.html')
 
 # LAND PAGE
 
 
 def landingPage(request):
     ImovelCount = Imovel.objects.count()
-    return render(request, 'Dashboard/landing.html',{'imovelcount':ImovelCount})
+    return render(request, 'Dashboard/landing.html',{'imovelcount':ImovelCount,})
 
-# REGISTER IMOVEL PAGE
-
+# REGISTRAR IMOVEL PAGE
 
 def ImovelRegister(request):
     registered = False
@@ -50,7 +50,7 @@ def ImovelRegister(request):
                    'registered': registered})
 
 
-# REGISTER USER PAGE
+# REGISTRAR USUARIO
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -82,7 +82,6 @@ def register(request):
                    'registered': registered})
 # TROCAR SENHA
 
-
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -100,7 +99,7 @@ def change_password(request):
     })
 
 
-# LOGUIN PAGE
+# PAGINA DE LOGIN
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -113,9 +112,7 @@ def user_login(request):
                     login(request, user)
                     # PASSA A VIEW DASHBOARD=
                     ImovelCount = Imovel.objects.count()
-                    img = UserProfile.objects.get(pk=id)
-                    return render(request, 'Dashboard/landing.html',{'imovelcount':ImovelCount,
-                                                                    'userprofile':img})
+                    return render(request, 'Dashboard/landing.html',{'imovelcount':ImovelCount,})
                 else:
                     # PASSA A VIEW ERRO/CONTA DESATIVADA
                     return HttpResponse('Conta Desativada')
@@ -127,8 +124,6 @@ def user_login(request):
     return render(request, 'Registration/login.html', {'form': form})
 
 # LOGOUT PAGE
-
-
 def user_logout(request):
     logout(request)
     messages.success(request, 'Deslogado com Sucesso')
@@ -139,21 +134,16 @@ def user_logout(request):
 class ImovelListView(ListView):
     model = Imovel
     template_name = 'Dashboard/listarimoveis.html'
-    paginate_by = 10
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(ImovelListView, self).get_context_data(**kwargs)
         return context
 
     def get_paginate_by(self, queryset):
-        """
-        Paginate by specified value in querystring, or use default class property value.
-        """
         return self.request.GET.get('paginate_by', self.paginate_by)
 
 # DETAIL VIEW
-
-
 class ImovelDetailView(DetailView):
     model = Imovel
     template_name = 'Dashboard/Imovel/detail.html'
@@ -165,12 +155,10 @@ class ImovelNoEditView(DetailView):
 
 # PERFIL PAGE
 
-
 def perfil(request):
     return render(request, 'Dashboard/Perfil/landing.html')
 
 # EDITAR PERFIL
-
 
 class perfilUpdateView(UpdateView):
     model = User
@@ -204,8 +192,15 @@ class ImovelDeleteView(DeleteView):
 class ImovelUpdateView(UpdateView):
     model = Imovel
     template_name = 'Dashboard/Imovel/edit.html'
-    form_class = ImovelUserForm
+    fields = ['nome', 'cep', 'uf', 'stats', 'profilePic' ,'position']
     success_url = reverse_lazy('Rent:landing')
+
+#UPDATE DA CLASS IMOVELIMAGES (1 IMOVEL -> N IMAGENS)
+#class ImovelImageUpdateView(UpdateView):
+#    model = ImagensImovel
+#    template_name = 'Dashboard/Imovel/editImagens.html'
+#    form_class = ImagemImovelForm
+#    success_url = reverse_lazy('Rent:landing')
 
 # VIEWTESTE PARA GRAFICOS
 

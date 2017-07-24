@@ -52,7 +52,7 @@
     </nav>
 
     {% block content %}
-    <h1>Loguin</h1>
+    <h1>Login</h1>
     <p>Se ainda não tiver uma conta, cadastre-se  <a href="{% url 'Rent:register' %}">aqui</a></p>
     <form action="." method="post">
         {{ form.as_p }} {% csrf_token %}

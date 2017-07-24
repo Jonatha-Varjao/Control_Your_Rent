@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import formset_factory
 from django.contrib.auth.models import User
 from ControlMyRent.models import UserProfile, Imovel
 
@@ -27,7 +28,19 @@ class UserRegistrationForm(forms.ModelForm):
 class ImovelUserForm(forms.ModelForm):
     class Meta:
         model = Imovel
-        fields = ('nome', 'cep', 'uf', 'stats', 'position')
+        fields = ('nome', 'cep', 'uf', 'stats', 'profilePic' ,'position')
+
+class ImovelEditForm(forms.ModelForm):
+    class Meta:
+        model = Imovel
+        fields = ('nome', 'cep', 'uf', 'stats', 'profilePic' ,'position')
+
+#FORMS PARA ADICIONAR AS IMAGENS PARA O IMOVEL (FK)
+#class ImagemImovelForm(forms.ModelForm):
+#   image = forms.ImageField(label='Imagem')
+#    class Meta:
+#        model = ImagensImovel
+#        fields = ('imagem',)
 
 
 # ADICIONANDO FIELDS AO PADRAO USER
@@ -45,8 +58,7 @@ class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('first_name', 'last_name', 'cpf',
-                  'data_de_nascimento', 'sexo', 'image')
-    
+                  'data_de_nascimento', 'sexo', 'image')    
 
     def save(self, commit=True):
         user = super(UserProfileEditForm, self).save(commit=False)

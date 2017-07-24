@@ -48,13 +48,10 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profilePic = models.ImageField(upload_to ='profile_image', blank=True)
 
-
     def __str__(self):
         return self.user.username
 
 class Imovel(models.Model):
-    class Meta:
-        verbose_name_plural = 'Imoveis'
     UF_CHOICES = (
         (u'AC', u'Acre'),
         (u'AL', u'Alagoas'),
@@ -85,21 +82,27 @@ class Imovel(models.Model):
         (u'TO', u'Tocantins'),
     )
     STATUS_CHOICES = (
-        (0, 'Alugar'),
-        (00,'Alugado'),
-        (1, 'Vender'),
-        (11,'Vendido')
+        ('Alugar', 'Alugar'),
+        ('Vender', 'Vender'),
     )
-
     nome = models.CharField(max_length=40, null=False)
     user = models.ForeignKey(User, related_name="imovel", default=1)
     cep = models.CharField(max_length=8)
-    uf = models.CharField(max_length=2, default='ZZ',
-                          null=False, choices=UF_CHOICES)
-    stats = models.IntegerField(default=0,
-                             null=False, choices=STATUS_CHOICES)
-    # TODO googleMaps API
+    uf = models.CharField(max_length=2, default='ZZ', null=False, choices=UF_CHOICES)
+    stats = models.CharField(max_length=7, null=False, choices=STATUS_CHOICES)
     position = GeopositionField()
-    
+    profilePic = models.ImageField(upload_to ='imovel_image', blank=True)
 
+    class Meta:
+        verbose_name_plural = 'Imoveis'
+        #ORDENAR POR LIKE TODO
+        #ordering = ["likesImovel"]
+
+#TODO CLASS PARA VARIAS IMAGENS ASSOCIADA AO IMOVEL(FK)
+#class ImagensImovel(models.Model):
+#    imovel = models.ForeignKey(Imovel,blank=True)
+#    imagem = models.ImageField(upload_to ='imovel_image', blank=True, verbose_name='Imagem')
+
+#TODO CLASS LIKE PRA ORDENAR NA LISTA IMOVEIS
 #class like(models.Model):
+#likes = models.ForeignKey(imovel, related_name="imovel", blank=True)
